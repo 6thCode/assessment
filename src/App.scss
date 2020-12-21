@@ -91,6 +91,14 @@
   }
 }
 
+.loader {
+  position: absolute;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
 .gallery-lightboxes{
   .image-lightbox{
     position:fixed;
@@ -131,7 +139,7 @@
       .close{
         width: 1.5em;
         height: 1.5em;
-        color: #fff;
+        // color: #fff;
         font-weight: bold;
         text-decoration: none;
         border-radius: 50%;
@@ -141,7 +149,7 @@
         &:before{
           content: '';
           display: block;
-          width: 10px;
+          width: 15px;
           height: 2px;
           background: #fff;
           margin: 0;
@@ -154,7 +162,7 @@
         &:after{
           content: '';
           display: block;
-          width: 10px;
+          width: 15px;
           height: 2px;
           background: #fff;
           margin: 0;

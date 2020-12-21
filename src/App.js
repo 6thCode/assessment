@@ -3,17 +3,22 @@ import './App.scss';
 import PhotoCard from './components/PhotoCard'
 import axiosConfig from './helpers/axiosConfig'
 import { ReactComponent as SearchIcon } from './svgs/searchIcon.svg';
-
+import GridLayoutLoader from './components/GridLayoutLoader'
 
 function App() {
   const [isPhotos, setIsPhotos] = useState([])
+  // eslint-disable-next-line
   const [error, setError] = useState('')
-  // console.log(isSearch)
+  const [Loading, setLoading] = useState(false)
+  // console.log(isPhotos)
+  var newList = Object.keys(isPhotos)
+  console.log(newList)
 
   useEffect(() => {
     axiosConfig.get('/photos/?client_id=ZgWulLlIrXIAFZBgRlOIV4mJBMBdNLtzyr5ymIsEUZs')
     .then(res => {
       setIsPhotos(res.data)
+      setLoading(true)
     },
     (error) => {
         setError(error)
@@ -28,14 +33,9 @@ function App() {
       );
     });
     setIsPhotos(updatedList)
-};
+  };
 
 
-  if(error) {
-    return <p className='center-loading'>Loading...</p>
-  } else {
-
-  }
   return (
     <div className="App">
       <div className="container">
@@ -46,17 +46,25 @@ function App() {
            placeholder="search for photo" />
         </div>
       </div>
-      <div className="image-list gallery-wrapper">
-        {isPhotos.map((photo, id) => (
-          <li key={id}>
-            <PhotoCard
-              image={photo.user.profile_image.large}
-              name={photo.user.name}
-              details={photo.user.location}
-            />
-          </li>
-        ))}
-      </div>
+
+      {!Loading ? (
+        <div className="loader" >
+        <GridLayoutLoader />
+        </div>
+      ) : (
+        <div className="image-list gallery-wrapper">
+          {isPhotos.map((photo, id) => (
+            <li key={id}>
+              <PhotoCard
+                image={photo.user.profile_image.large}
+                name={photo.user.name}
+                details={photo.user.location}
+              />
+            </li>
+          ))}
+        </div>
+      )}
+
     </div>
   );
 }
