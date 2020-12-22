@@ -57,6 +57,7 @@ function App() {
           {filterDisplay.map((photo, id) => (
             <li key={id}>
               <PhotoCard
+                // id={photo.user.id}
                 image={photo.user.profile_image.large}
                 name={photo.user.name}
                 details={photo.user.location}
