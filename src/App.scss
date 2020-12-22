@@ -68,6 +68,8 @@
         width:100%;
         border-radius: 10px;
         filter: brightness(60%);
+        object-fit: cover;
+        min-height: 350px;
       }
       .image-title {
         position: absolute;
@@ -204,7 +206,7 @@
     }
     .gallery-wrapper {
       max-width: fit-content;
-      grid-gap: 0;
+      grid-gap: 1rem;
     }
     .loader {
       display: none;
