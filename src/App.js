@@ -6,44 +6,45 @@ import { ReactComponent as SearchIcon } from './svgs/searchIcon.svg';
 import GridLayoutLoader from './components/GridLayoutLoader'
 
 function App() {
-  const [isPhotos, setIsPhotos] = useState([])
   // eslint-disable-next-line
-  const [error, setError] = useState('')
-  const [Loading, setLoading] = useState(false)
-  // console.log(isPhotos)
-  var newList = Object.keys(isPhotos)
-  console.log(newList)
+  const [error, setError] = useState('');
+  const [Loading, setLoading] = useState(false);
+  const [isPhotos, setIsPhotos] = useState([]);
+  const [filterDisplay, setFilterDisplay] = useState([]);
+  // console.log(verifiedFilter)
 
   useEffect(() => {
     axiosConfig.get('/photos/?client_id=ZgWulLlIrXIAFZBgRlOIV4mJBMBdNLtzyr5ymIsEUZs')
     .then(res => {
-      setIsPhotos(res.data)
       setLoading(true)
+      setIsPhotos(res.data)
+      setFilterDisplay(res.data)
     },
     (error) => {
-        setError(error)
+      setError(error)
     })
   }, [])
 
-   function filterList (e){
-    var updatedList = isPhotos.filter(item => {
-      console.log(updatedList)
+
+  // search section 
+  function filterList (e){
+    const updatedList = isPhotos.filter(item => {
       return (
-        item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
+        item.user.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
       );
     });
-    setIsPhotos(updatedList)
+    setFilterDisplay(updatedList)
   };
-
 
   return (
     <div className="App">
       <div className="container">
         <div className="photo-section">
           <SearchIcon className="icon" />
-          <input type="text"
+          <input 
           onChange={filterList}
-           placeholder="search for photo" />
+          type="text"
+          placeholder="Search for photo" />
         </div>
       </div>
 
@@ -53,7 +54,7 @@ function App() {
         </div>
       ) : (
         <div className="image-list gallery-wrapper">
-          {isPhotos.map((photo, id) => (
+          {filterDisplay.map((photo, id) => (
             <li key={id}>
               <PhotoCard
                 image={photo.user.profile_image.large}

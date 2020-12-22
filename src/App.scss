@@ -193,15 +193,17 @@
 }
 
 @media only screen and (max-width: 991px) {
-  
-  .App {
-    padding: 3rem 1rem;
-    .photo-section {
-      max-width: 100%;
+    .App {
+      padding: 3rem 1rem;
+      .photo-section {
+        max-width: 100%;
+      }
     }
-  }
-  .gallery-wrapper {
-    max-width: fit-content;
-    grid-gap: 0;
-  }
+    .gallery-wrapper {
+      max-width: fit-content;
+      grid-gap: 0;
+    }
+    .loader {
+      display: none;
+    }
   }
