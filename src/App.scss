@@ -215,4 +215,10 @@
     .image-wrapper {
       margin: 0 1rem;
     }
+    .gallery-lightboxes .image-lightbox .image-lightbox-wrapper .close {
+      right: 0;
+    }
+    .gallery-lightboxes .image-lightbox .image-lightbox-wrapper {
+      width: 100%;
+    }
   }
