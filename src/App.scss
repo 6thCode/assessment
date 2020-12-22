@@ -205,10 +205,14 @@
       }
     }
     .gallery-wrapper {
-      max-width: fit-content;
+      max-width: 100%;
       grid-gap: 1rem;
+      padding: 0;
     }
     .loader {
       display: none;
+    }
+    .image-wrapper {
+      margin: 0 1rem;
     }
   }
